@@ -1,7 +1,11 @@
 "use client";
 
-export default function Home() {
-  return (
-    <div></div>
+import Home from './pages/home/page';
+
+const Index = () => {
+	return (  
+    <Home />    
   );
-}
+};
+
+export default Index;

@@ -90,8 +90,7 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	const linkClass =
-		"font-bold text-lg text-white hover:text-gray-400 transition-colors";
+	const linkClass = "font-bold text-lg text-white";
 
 	const textAnimation = {
 		hidden: { y: 20, opacity: 0 },
@@ -117,11 +116,19 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 		},
 	};
 
+	const hoverScale = {
+		initial: { scale: 1 },
+		hover: { scale: 1.1, transition: { duration: 0.2 } },
+		tap: { scale: 0.95 },
+	};
+
 	return (
 		<div
 			ref={navbarRef}
 			className={`fixed top-0 left-0 w-full z-10 transition-transform duration-200 px-4 ${
-				isScrolled ? "bg-black" : "bg-black/10 backdrop-blur-none"
+				isScrolled
+					? "bg-black"
+					: "bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-none "
 			} ${
 				scrollDirection === "down" && !isMenuOpen
 					? "-translate-y-full"
@@ -130,25 +137,29 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 		>
 			<div className="mx-auto flex items-center justify-between p-2">
 				<Link href="/">
-					<div className="cursor-pointer">
-						<div className="relative w-14 h-14 transition-all duration-300 hover:grayscale hover:brightness-75 hover:invert hover:opacity-70">
-							<Image
-								src="/assets/img/logo.png"
-								alt="logo"
-								fill
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-								style={{ objectFit: "contain" }}
-								className="transition-transform duration-200"
-								priority
-							/>
-						</div>
-					</div>
+					<motion.div
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+						className="cursor-pointer relative w-18 h-14"
+					>
+						<Image
+							src="/assets/img/logo.png"
+							alt="logo"
+							fill
+							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							style={{ objectFit: "contain" }}
+							className="transition-transform duration-200"
+							priority
+						/>
+					</motion.div>
 				</Link>
 				<div className="md:hidden">
 					<Controls isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
 				</div>
 
-				{/* Animated Navbar Desktop */}
+				{/* Desktop Navbar */}
 				<motion.nav className="hidden md:flex items-center space-x-4">
 					<AnimatePresence mode="wait">
 						<motion.div
@@ -159,9 +170,16 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 							exit="exit"
 							variants={textAnimation}
 						>
-							<Link href="/" className={`cursor-pointer ${linkClass}`}>
-								{translations.home}
-							</Link>
+							<motion.div
+								variants={hoverScale}
+								initial="initial"
+								whileHover="hover"
+								whileTap="tap"
+							>
+								<Link href="/" className={`cursor-pointer ${linkClass}`}>
+									{translations.home}
+								</Link>
+							</motion.div>
 						</motion.div>
 						<motion.div
 							key={language + "-gallery"}
@@ -171,9 +189,16 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 							exit="exit"
 							variants={textAnimation}
 						>
-							<Link href="/gallery" className={`cursor-pointer ${linkClass}`}>
-								{translations.gallery}
-							</Link>
+							<motion.div
+								variants={hoverScale}
+								initial="initial"
+								whileHover="hover"
+								whileTap="tap"
+							>
+								<Link href="/gallery" className={`cursor-pointer ${linkClass}`}>
+									{translations.gallery}
+								</Link>
+							</motion.div>
 						</motion.div>
 						<motion.div
 							key={language + "-contact"}
@@ -183,19 +208,30 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 							exit="exit"
 							variants={textAnimation}
 						>
-							<ScrollLink
-								to="footer"
-								smooth={true}
-								duration={500}
-								className={`cursor-pointer ${linkClass}`}
+							<motion.div
+								variants={hoverScale}
+								initial="initial"
+								whileHover="hover"
+								whileTap="tap"
 							>
-								{translations.contacts}
-							</ScrollLink>
+								<ScrollLink
+									to="footer"
+									smooth={true}
+									duration={500}
+									className={`cursor-pointer ${linkClass}`}
+								>
+									{translations.contacts}
+								</ScrollLink>
+							</motion.div>
 						</motion.div>
 					</AnimatePresence>
-					<button
+					<motion.button
 						onClick={toggleLanguage}
-						className="border border-current mx-2 my-1 transition-all duration-300 hover:grayscale hover:brightness-95 hover:opacity-90"
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+						className="border border-current mx-2 my-1"
 					>
 						<Image
 							src={
@@ -207,11 +243,11 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 							width={38}
 							height={38}
 						/>
-					</button>
+					</motion.button>
 				</motion.nav>
 			</div>
 
-			{/* Navbar Mobile */}
+			{/* Mobile Navbar */}
 			<div
 				className={`md:hidden fixed top-0 left-0 w-full bg-black flex flex-col justify-center items-center transition-[height,opacity] duration-500 ease-in-out ${
 					isMenuOpen ? "h-screen opacity-100" : "h-0 opacity-0 overflow-hidden"
@@ -220,11 +256,15 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 				{/* 🔥 Keep logo and hamburger menu always visible at the top */}
 				<div className="absolute top-2 left-6 z-50">
 					<Link href="/">
-						<div
+						<motion.div
+							variants={hoverScale}
+							initial="initial"
+							whileHover="hover"
+							whileTap="tap"
 							className="cursor-pointer"
 							onClick={() => setIsMenuOpen(false)}
 						>
-							<div className="relative w-14 h-14 transition-all duration-300 hover:grayscale hover:brightness-75 hover:invert hover:opacity-70">
+							<div className="relative w-18 h-14 transition-all duration-300">
 								<Image
 									src="/assets/img/logo.png"
 									alt="logo"
@@ -235,7 +275,7 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 									priority
 								/>
 							</div>
-						</div>
+						</motion.div>
 					</Link>
 				</div>
 
@@ -250,55 +290,78 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 					variants={navbarMobileVariants}
 					className="flex flex-col items-center space-y-6 mt-20 w-full"
 				>
-					<Link href="/">
-						<div
-							className={`cursor-pointer ${linkClass}`}
-							onClick={(e) => {
-								handleHomeClick(e);
-								toggleMenu();
-							}}
-						>
-							{translations.home}
-						</div>
-					</Link>
-					<Link href="/gallery">
-						<div
-							className={`cursor-pointer ${linkClass}`}
-							onClick={(e) => {
-								handleGalleryClick(e);
-								toggleMenu();
-							}}
-						>
-							{translations.gallery}
-						</div>
-					</Link>
-					{isGalleryPage && !hasScrollbar.current ? (
-						<div
-							className={`cursor-pointer ${linkClass}`}
-							onClick={handleContactClick}
-						>
-							{translations.contacts}
-						</div>
-					) : (
-						<ScrollLink
-							to="footer"
-							smooth={true}
-							duration={500}
-							offset={offset}
-							className={`cursor-pointer ${linkClass}`}
-							onClick={() => setIsMenuOpen(false)}
-						>
-							{translations.contacts}
-						</ScrollLink>
-					)}
+					<motion.div
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+					>
+						<Link href="/">
+							<div
+								className={`cursor-pointer ${linkClass}`}
+								onClick={(e) => {
+									toggleMenu();
+								}}
+							>
+								{translations.home}
+							</div>
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+					>
+						<Link href="/gallery">
+							<div
+								className={`cursor-pointer ${linkClass}`}
+								onClick={(e) => {
+									toggleMenu();
+								}}
+							>
+								{translations.gallery}
+							</div>
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+					>
+						{isGalleryPage && !hasScrollbar.current ? (
+							<div
+								className={`cursor-pointer ${linkClass}`}
+								onClick={handleContactClick}
+							>
+								{translations.contacts}
+							</div>
+						) : (
+							<ScrollLink
+								to="footer"
+								smooth={true}
+								duration={500}
+								offset={offset}
+								className={`cursor-pointer ${linkClass}`}
+								onClick={() => setIsMenuOpen(false)}
+							>
+								{translations.contacts}
+							</ScrollLink>
+						)}
+					</motion.div>
 
 					{/* 🔥 Language Toggle - Now together with other menu items */}
-					<button
+					<motion.button
 						onClick={() => {
 							toggleLanguage();
 							toggleMenu();
 						}}
-						className="border border-current mx-2 my-1 transition-all duration-300 hover:grayscale hover:brightness-95 hover:opacity-90"
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+						className="border border-current mx-2 my-1"
 					>
 						<Image
 							src={
@@ -310,7 +373,7 @@ const Navbar = ({ scrolled, onColorChange, initialBgColor }) => {
 							width={38}
 							height={38}
 						/>
-					</button>
+					</motion.button>
 				</motion.div>
 			</div>
 		</div>

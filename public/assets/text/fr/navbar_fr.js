@@ -1,7 +1,7 @@
 const navbar_fr = {
 	home: "Accueil",
 	gallery: "Galerie",
-	contacts: "Contact",
+	contacts: "Contactez-nous",
 	switchLanguage: "EN"
 };
 

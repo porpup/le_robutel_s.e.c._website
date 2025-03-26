@@ -2,8 +2,8 @@
 
 import { LanguageProvider } from "@app/components/LanguageContext";
 import Navbar from "@app/components/Navbar";
-import Footer from "@app/components/Footer";
 import Form from "@app/components/Form";
+import Footer from "@app/components/Footer";
 
 const ContactUs = () => {
 	return (

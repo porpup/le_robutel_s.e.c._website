@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useContext } from "react";
-import { LanguageContext } from "../components/LanguageContext"; // adjust the path as needed
+import { LanguageContext } from "./LanguageContext";
 import about_en from "@public/assets/text/en/about_en";
 import about_fr from "@public/assets/text/fr/about_fr";
 

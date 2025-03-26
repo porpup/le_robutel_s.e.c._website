@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
-import { LanguageContext } from "../components/LanguageContext"; // adjust path if needed
+import { LanguageContext } from "./LanguageContext";
 import form_en from "@public/assets/text/en/form_en";
 import form_fr from "@public/assets/text/fr/form_fr";
 

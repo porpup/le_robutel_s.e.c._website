@@ -1,3 +1,5 @@
+"use client";
+
 export function useSmoothScrollTo() {
 	return (targetY, duration = 1000, onComplete) => {
 		const scrollElement = document.scrollingElement || document.documentElement;

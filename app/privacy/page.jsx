@@ -2,8 +2,8 @@
 
 import { LanguageProvider } from "@app/components/LanguageContext";
 import Navbar from "@app/components/Navbar";
+import PrivacyPolicy from "@app/components/PrivacyPolicy";
 import Footer from "@app/components/Footer";
-import PrivacyPolicy from '@app/components/PrivacyPolicy';
 
 const Privacy = () => {
 	return (

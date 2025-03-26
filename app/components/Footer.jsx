@@ -130,7 +130,23 @@ const Footer = () => {
 
 			{/* Bottom text */}
 			<div className="pl-8 text-xs pb-5 flex flex-col md:flex-row md:space-x-10">
-				<p className="mb-2 md:mb-0">© 2025 - {company.name}</p>
+				<div className="flex items-center flex-wrap gap-x-1 mb-2 md:mb-0">
+					<span>© 2025 - {company.name} | &nbsp;</span>
+					<motion.span
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+						className="inline-block"
+					>
+						<Link
+							href="/privacy"
+							className="underline hover:text-gray-300 transition"
+						>
+							{texts.privacyPolicy}
+						</Link>
+					</motion.span>
+				</div>
 				<p>RBQ: 3379429999</p>
 			</div>
 		</footer>

@@ -182,9 +182,15 @@ const Navbar = ({ initialBgColor }) => {
 								onClick: handleGalleryClick,
 							},
 							{
-								key: language + "-contactUs",
+								key: language + "-about",
+								label: translations.about,
+								href: "/about",
+								onClick: () => setIsMenuOpen(false),
+							},
+							{
+								key: language + "-contact",
 								label: translations.contacts,
-								href: "/contactUs",
+								href: "/contact",
 								onClick: () => setIsMenuOpen(false),
 							},
 						].map((item, i) => (
@@ -228,7 +234,7 @@ const Navbar = ({ initialBgColor }) => {
 						{/* 🔥 Language toggle with same animation as menu items */}
 						<motion.div
 							key={language + "-lang-toggle"}
-							custom={3}
+							custom={4}
 							initial="hidden"
 							animate="show"
 							exit="exit"
@@ -342,6 +348,23 @@ const Navbar = ({ initialBgColor }) => {
 						whileHover="hover"
 						whileTap="tap"
 					>
+						<Link href="/about">
+							<div
+								className={`cursor-pointer ${linkClass}`}
+								onClick={() => {
+									toggleMenu();
+								}}
+							>
+								{translations.about}
+							</div>
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={hoverScale}
+						initial="initial"
+						whileHover="hover"
+						whileTap="tap"
+					>
 						{isGalleryPage && !hasScrollbar.current ? (
 							<div
 								className={`cursor-pointer ${linkClass}`}
@@ -350,7 +373,7 @@ const Navbar = ({ initialBgColor }) => {
 								{translations.contacts}
 							</div>
 						) : (
-							<Link href="/contactUs">
+							<Link href="/contact">
 								<div
 									className={`cursor-pointer ${linkClass}`}
 									onClick={() => setIsMenuOpen(false)}

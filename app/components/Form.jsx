@@ -77,7 +77,7 @@ const Form = () => {
 								required
 								inputMode="numeric"
 								pattern="[0-9]*"
-								placeholder="(555)123-4567"
+								placeholder="(555) 123-4567"
 								className="w-full border border-gray-300 p-2 rounded-md placeholder-gray-400"
 							/>
 						</div>

@@ -3,11 +3,16 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { LanguageContext } from "../components/LanguageContext"; // adjust path if needed
+import form_en from "@public/assets/text/en/form_en";
+import form_fr from "@public/assets/text/fr/form_fr";
 
 const Form = () => {
+	const { language } = useContext(LanguageContext);
+	const t = language === "fr" ? form_fr : form_en;
 	const [submitted, setSubmitted] = useState(false);
 	const router = useRouter();
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.target);
@@ -23,14 +28,11 @@ const Form = () => {
 		}
 	};
 
-	// ⏳ Redirect after 3 seconds
 	useEffect(() => {
 		if (submitted) {
 			const timeout = setTimeout(() => {
 				router.push("/");
 			}, 3000);
-
-			// Cleanup timeout on unmount
 			return () => clearTimeout(timeout);
 		}
 	}, [submitted, router]);
@@ -47,43 +49,51 @@ const Form = () => {
 						<input type="hidden" name="_next" value="false" />
 
 						<div>
-							<label className="block text-sm font-medium mb-1">Name</label>
+							<label className="block text-sm font-medium mb-1">
+								{t.nameLabel}
+							</label>
 							<input
 								type="text"
 								name="name"
 								required
-								placeholder="John Smith"
+								placeholder={t.namePlaceholder}
 								className="w-full border border-gray-300 p-2 rounded-md placeholder-gray-400"
 							/>
 						</div>
 
 						<div>
-							<label className="block text-sm font-medium mb-1">Email</label>
+							<label className="block text-sm font-medium mb-1">
+								{t.emailLabel}
+							</label>
 							<input
 								type="email"
 								name="email"
 								required
-								placeholder="example@domain.com"
+								placeholder={t.emailPlaceholder}
 								pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
 								className="w-full border border-gray-300 p-2 rounded-md placeholder-gray-400"
 							/>
 						</div>
 
 						<div>
-							<label className="block text-sm font-medium mb-1">Phone</label>
+							<label className="block text-sm font-medium mb-1">
+								{t.phoneLabel}
+							</label>
 							<input
 								type="tel"
 								name="phone"
 								required
 								inputMode="numeric"
 								pattern="[0-9]*"
-								placeholder="(555) 123-4567"
+								placeholder={t.phonePlaceholder}
 								className="w-full border border-gray-300 p-2 rounded-md placeholder-gray-400"
 							/>
 						</div>
 
 						<div>
-							<label className="block text-sm font-medium mb-1">Message</label>
+							<label className="block text-sm font-medium mb-1">
+								{t.messageLabel}
+							</label>
 							<textarea
 								name="message"
 								required
@@ -96,7 +106,7 @@ const Form = () => {
 							type="submit"
 							className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 transition"
 						>
-							Submit
+							{t.submitButton}
 						</button>
 					</form>
 				) : (
@@ -109,11 +119,9 @@ const Form = () => {
 							className="mx-auto mb-4"
 						/>
 						<h2 className="text-3xl font-bold uppercase mb-2 text-black">
-							Thank You
+							{t.successTitle}
 						</h2>
-						<p className="text-l text-black">
-							The form was submitted successfully.
-						</p>
+						<p className="text-l text-black">{t.successMessage}</p>
 					</div>
 				)}
 			</div>

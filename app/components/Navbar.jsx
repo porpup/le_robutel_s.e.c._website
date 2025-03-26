@@ -61,7 +61,7 @@ const Navbar = ({ initialBgColor }) => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	const linkClass = "text-lg text-white";
+	const linkClass = "text-base text-white";
 
 	const handleHomeClick = (event) => {
 		if (window.location.pathname === "/") {
@@ -260,7 +260,7 @@ const Navbar = ({ initialBgColor }) => {
 
 			{/* Mobile Navbar */}
 			<div
-				className={`md:hidden fixed top-0 left-0 w-full bg-black flex flex-col justify-center items-center transition-[height,opacity] duration-500 ease-in-out ${
+				className={`md:hidden fixed top-0 left-0 w-full bg-black flex flex-col justify-top items-center transition-[height,opacity] duration-500 ease-in-out ${
 					isMenuOpen ? "h-screen opacity-100" : "h-0 opacity-0 overflow-hidden"
 				}`}
 			>

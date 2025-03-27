@@ -38,7 +38,7 @@ const Footer = () => {
 		>
 			{/* Title */}
 			<h6 className="pl-8 pb-4 pt-6 font-light uppercase text-left text-3xl">
-				La Robutel S.E.C.
+				Le Robutel S.E.C.
 			</h6>
 
 			{/* Contact Section */}
@@ -131,7 +131,7 @@ const Footer = () => {
 			{/* Bottom text */}
 			<div className="pl-8 text-xs pb-5 flex flex-col md:flex-row md:space-x-10">
 				<div className="flex items-center flex-wrap gap-x-1 mb-2 md:mb-0">
-					<span>© 2025 - {company.name} | &nbsp;</span>
+					<span>© 2025 - {company.name} |&nbsp;</span>
 					<motion.span
 						variants={hoverScale}
 						initial="initial"

@@ -61,7 +61,7 @@ const Navbar = ({ initialBgColor }) => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	const linkClass = "text-base text-white";
+	const linkClass = "font-bold text-base text-white";
 
 	const handleHomeClick = (event) => {
 		if (window.location.pathname === "/") {

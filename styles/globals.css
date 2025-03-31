@@ -20,6 +20,17 @@
   }
 }
 
+@layer utilities {
+  .neon-glow {
+    text-shadow:
+      0 0 5px #000000,
+      0 0 10px #000000,
+      0 0 20px rgb(0, 0, 0),
+      0 0 30px rgb(0, 0, 0),
+      0 0 40px rgb(0, 0, 0);
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

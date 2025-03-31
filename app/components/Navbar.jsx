@@ -61,7 +61,7 @@ const Navbar = ({ initialBgColor }) => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	const linkClass = "font-bold text-base text-white";
+	const linkClass = "font-bold text-base text-white neon-glow";
 
 	const handleHomeClick = (event) => {
 		if (window.location.pathname === "/") {
@@ -128,7 +128,7 @@ const Navbar = ({ initialBgColor }) => {
 	return (
 		<div
 			className={`
-				fixed top-0 left-0 w-full z-10 px-4 transition-all uppercase duration-500 ease-in-out
+				fixed top-0 left-0 w-full z-40 px-4 transition-all uppercase duration-500 ease-in-out
 				${
 					navbarColor === "black"
 						? "bg-black"

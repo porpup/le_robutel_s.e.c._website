@@ -153,7 +153,7 @@ const Form = () => {
 				) : (
 					<div className="text-center">
 						<Image
-							src="/assets/img/checkMark.svg"
+							src="/assets/img/icons/checkMark.svg"
 							alt="Success"
 							width={80}
 							height={80}

@@ -2,14 +2,16 @@
 
 import { LanguageProvider } from "@app/components/LanguageContext";
 import Navbar from "@app/components/Navbar";
-import Test from "@app/components/Test";
+import Welcome from '@app/components/Welcome';
+import Map from "@app/components/Map";
 import Footer from "@app/components/Footer";
 
 const Home = () => {
 	return (
 		<LanguageProvider>
 			<Navbar />
-			<Test />
+			<Welcome />
+			<Map />
 			<Footer />
 		</LanguageProvider>
 	);

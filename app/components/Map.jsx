@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import TransportationTab from "./TransportationTab";
 import SchoolsTab from "./SchoolsTab";
+import HospitalsTab from "./HospitalsTab";
+import EntertainmentTab from "./EntertainmentTab";
 import Image from "next/image";
 
 const tabs = [
@@ -35,9 +37,9 @@ const Map = () => {
 			case "schools":
 				return <SchoolsTab />;
 			case "hospitals":
-				return <div>Hospitals content goes here</div>;
+				return <HospitalsTab />;
 			case "entertainment":
-				return <div>Entertainment content goes here</div>;
+				return <EntertainmentTab />;
 			default:
 				return null;
 		}

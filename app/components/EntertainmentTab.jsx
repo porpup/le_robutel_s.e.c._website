@@ -3,12 +3,13 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { LanguageContext } from "./LanguageContext";
-import schoolText_en from "@public/assets/text/en/schoolsTab_en";
-import schoolText_fr from "@public/assets/text/fr/schoolsTab_fr";
+import entertainmentText_en from "@public/assets/text/en/entertainmentTab_en";
+import entertainmentText_fr from "@public/assets/text/fr/entertainmentTab_fr";
 
-const SchoolsTab = () => {
+const EntertainmentTab = () => {
 	const { language } = useContext(LanguageContext);
-	const textData = language === "fr" ? schoolText_fr : schoolText_en;
+	const textData =
+		language === "fr" ? entertainmentText_fr : entertainmentText_en;
 
 	const [animateImage, setAnimateImage] = useState(false);
 	const [animateText, setAnimateText] = useState(false);
@@ -55,14 +56,14 @@ const SchoolsTab = () => {
 					className="relative w-full h-64 md:h-auto flex-1 cursor-pointer"
 					onClick={() =>
 						window.open(
-							"https://www.google.com/maps/place/20+Bd+Industriel,+Ch%C3%A2teauguay,+QC+J6J+4Z2/@45.3608678,-73.7379359,13.62z/data=!4m9!1m2!2m1!1sschools!3m5!1s0x4cc914937f112f53:0x3409e8f01cd0fe5d!8m2!3d45.3672779!4d-73.7087202!16s%2Fg%2F11c3q3psp_?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoJLDEwMjExNjM5SAFQAw%3D%3D",
+							"https://www.google.com/maps/place/20+Bd+Industriel,+Ch%C3%A2teauguay,+QC+J6J+4Z2/@45.3633887,-73.7269017,15z/data=!4m9!1m2!2m1!1smuseum!3m5!1s0x4cc914937f112f53:0x3409e8f01cd0fe5d!8m2!3d45.3672779!4d-73.7087202!16s%2Fg%2F11c3q3psp_?entry=ttu&g_ep=EgoyMDI1MDMyNS4xIKXMDSoASAFQAw%3D%3D",
 							"_blank"
 						)
 					}
 				>
 					<Image
-						src="/assets/img/schools.png"
-						alt="Schools Châteauguay"
+						src="/assets/img/entertainment.png"
+						alt="Entertainment in Châteauguay"
 						fill
 						className="object-cover rounded-br-[5rem] hover:brightness-95 transition"
 						priority
@@ -89,4 +90,4 @@ const SchoolsTab = () => {
 	);
 };
 
-export default SchoolsTab;
+export default EntertainmentTab;

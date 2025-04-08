@@ -59,7 +59,7 @@ const Welcome = () => {
 			{/* Overlay content */}
 			<div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
 				<h1
-					className={`pointer-events-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-white whitespace-nowrap drop-shadow-xl neon-glow transition-all duration-[2000ms] ease-out ${
+					className={`pointer-events-auto text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl uppercase font-bold text-white whitespace-nowrap drop-shadow-xl neon-glow transition-all duration-[2000ms] ease-out ${
 						isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
 					}`}
 				>

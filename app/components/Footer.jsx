@@ -2,7 +2,7 @@
 
 import React, { useRef, useContext } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { LanguageContext } from "./LanguageContext";
 import footer_en from "@public/assets/text/en/footer_en";
 import footer_fr from "@public/assets/text/fr/footer_fr";
@@ -43,9 +43,20 @@ const Footer = () => {
 
 			{/* Contact Section */}
 			<div className="pl-8">
-				<div className="mb-1">{texts.jobTitle}:</div>
-				<div className="mb-2">Daniel St-Onge</div>
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={language + "jobTitle"} // Unique key for animation
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -10 }}
+						transition={{ duration: 0.3 }}
+					>
+						<div className="mb-1">{texts.jobTitle}:</div>
+						<div className="mb-2">Daniel St-Onge</div>
+					</motion.div>
+				</AnimatePresence>
 			</div>
+
 			<div className="pl-8 pr-8 flex flex-wrap gap-x-10 gap-y-6 items-start mt-4 w-full max-w-full">
 				{/* Phone */}
 				<div className="flex flex-col items-start">
@@ -130,23 +141,32 @@ const Footer = () => {
 
 			{/* Bottom text */}
 			<div className="pl-8 text-xs pb-5 flex flex-col md:flex-row md:space-x-10">
-				<div className="flex items-center flex-wrap gap-x-1 mb-2 md:mb-0">
-					<span>© 2025 - {company.name} |&nbsp;</span>
-					<motion.span
-						variants={hoverScale}
-						initial="initial"
-						whileHover="hover"
-						whileTap="tap"
-						className="inline-block"
+				<AnimatePresence mode="wait">
+					<motion.div
+						key={language + "bottomText"} // Unique key for animation
+						initial={{ opacity: 0, y: 10 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, y: -10 }}
+						transition={{ duration: 0.3 }}
+						className="flex items-center flex-wrap gap-x-1 mb-2 md:mb-0"
 					>
-						<Link
-							href="/privacy"
-							className="underline hover:text-gray-300 transition"
+						<span>© 2025 - {company.name} |&nbsp;</span>
+						<motion.span
+							variants={hoverScale}
+							initial="initial"
+							whileHover="hover"
+							whileTap="tap"
+							className="inline-block"
 						>
-							{texts.privacyPolicy}
-						</Link>
-					</motion.span>
-				</div>
+							<Link
+								href="/privacy"
+								className="underline hover:text-gray-300 transition"
+							>
+								{texts.privacyPolicy}
+							</Link>
+						</motion.span>
+					</motion.div>
+				</AnimatePresence>
 				<p>RBQ: 3379429999</p>
 			</div>
 		</footer>

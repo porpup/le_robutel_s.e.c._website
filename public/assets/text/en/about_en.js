@@ -19,9 +19,6 @@ const about_en = {
 		"Respect for architectural harmony and local character",
 		"Environmentally conscious planning",
 	],
-	condosTitle: "Condos Louis-Alexandre",
-	condosText:
-		"A prime example of our work is Condos Louis-Alexandre, a contemporary condominium project located in Châteauguay. Designed for comfort and convenience, this development reflects our dedication to high living standards and thoughtful design. It offers residents a peaceful living environment just minutes from essential services, green spaces, and transportation.",
 	impactTitle: "Local Presence, Lasting Impact",
 	impactText:
 		"Located in the heart of Châteauguay, Le Robutel S.E.C. is proud to be part of the city’s ongoing growth and evolution. We’re not just building properties — we’re shaping neighborhoods and contributing to the legacy of a region with a strong historical identity and promising future.",

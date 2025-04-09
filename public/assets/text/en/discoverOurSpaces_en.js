@@ -1,4 +1,4 @@
-const design_en = {
+const discoverOurSpaces_en = {
 	title: "Discover Our Spaces",
 	defaultText: "Tap on a building to discover what’s inside!",
 	descriptions: {
@@ -10,4 +10,4 @@ const design_en = {
 	},
 };
 
-export default design_en;
+export default discoverOurSpaces_en;

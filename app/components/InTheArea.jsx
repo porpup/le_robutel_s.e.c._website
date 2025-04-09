@@ -4,16 +4,16 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LanguageContext } from "./LanguageContext";
-import map_en from "@public/assets/text/en/map_en";
-import map_fr from "@public/assets/text/fr/map_fr";
+import inTheArea_en from "@public/assets/text/en/inTheArea_en";
+import inTheArea_fr from "@public/assets/text/fr/inTheArea_fr";
 import TransportationTab from "./TransportationTab";
 import SchoolsTab from "./SchoolsTab";
-import HospitalsTab from "./HospitalsTab";
+import HealthFacilitiesTab from "./HealthFacilitiesTab";
 import EntertainmentTab from "./EntertainmentTab";
 
-const Map = () => {
+const InTheArea = () => {
 	const { language } = useContext(LanguageContext);
-	const translations = language === "en" ? map_en : map_fr;
+	const translations = language === "en" ? inTheArea_en : inTheArea_fr;
 	const [activeTab, setActiveTab] = useState("transportation");
 
 	const tabs = [
@@ -46,7 +46,7 @@ const Map = () => {
 			case "schools":
 				return <SchoolsTab />;
 			case "hospitals":
-				return <HospitalsTab />;
+				return <HealthFacilitiesTab />;
 			case "entertainment":
 				return <EntertainmentTab />;
 			default:
@@ -100,4 +100,4 @@ const Map = () => {
 	);
 };
 
-export default Map;
+export default InTheArea;

@@ -1,4 +1,4 @@
-const map_en = {
+const inTheArea_en = {
 	nearby: "In the Area",
 	tabs: {
 		transportation: "Transportation",
@@ -8,4 +8,4 @@ const map_en = {
 	},
 };
 
-export default map_en;
+export default inTheArea_en;

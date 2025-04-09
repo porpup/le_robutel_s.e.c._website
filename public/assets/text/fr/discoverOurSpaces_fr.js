@@ -1,4 +1,4 @@
-const design_fr = {
+const discoverOurSpaces_fr = {
 	title: "Découvrez nos espaces",
 	defaultText:
 		"Touchez un bâtiment pour découvrir ce qu’il cache à l’intérieur !",
@@ -11,4 +11,4 @@ const design_fr = {
 	},
 };
 
-export default design_fr;
+export default discoverOurSpaces_fr;

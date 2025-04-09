@@ -3,10 +3,10 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { LanguageContext } from "./LanguageContext";
-import hospitalText_en from "@public/assets/text/en/hospitalsTab_en";
-import hospitalText_fr from "@public/assets/text/fr/hospitalsTab_fr";
+import hospitalText_en from "@public/assets/text/en/healthFacilitiesTab_en";
+import hospitalText_fr from "@public/assets/text/fr/healthFacilitiesTab_fr";
 
-const HospitalsTab = () => {
+const HealthFacilitiesTab = () => {
 	const { language } = useContext(LanguageContext);
 	const textData = language === "fr" ? hospitalText_fr : hospitalText_en;
 
@@ -89,4 +89,4 @@ const HospitalsTab = () => {
 	);
 };
 
-export default HospitalsTab;
+export default HealthFacilitiesTab;

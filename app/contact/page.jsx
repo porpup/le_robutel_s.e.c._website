@@ -10,7 +10,10 @@ const ContactUs = () => {
 		<LanguageProvider>
 			<Navbar />
 			<Form />
-			<Footer />
+			{/* Show footer only on small screens */}
+			<div className="block md:hidden">
+				<Footer />
+			</div>
 		</LanguageProvider>
 	);
 };

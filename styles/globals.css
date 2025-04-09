@@ -164,3 +164,32 @@ li {
   transform: translateY(0);
   opacity: 1;
 }
+
+.underline-hover {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.underline-hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.underline-hover:not(:hover)::after {
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}

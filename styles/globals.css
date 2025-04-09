@@ -8,22 +8,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Aviano Sans Light";
-  src: url("/fonts/Aviano Sans Light.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Gravesend Sans Medium";
-  src: url("/fonts/gravesend-sans-medium.ttf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;

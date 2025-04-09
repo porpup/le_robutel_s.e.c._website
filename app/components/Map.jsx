@@ -1,34 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { LanguageContext } from "./LanguageContext";
+import map_en from "@public/assets/text/en/map_en";
+import map_fr from "@public/assets/text/fr/map_fr";
 import TransportationTab from "./TransportationTab";
 import SchoolsTab from "./SchoolsTab";
 import HospitalsTab from "./HospitalsTab";
 import EntertainmentTab from "./EntertainmentTab";
-import Image from "next/image";
-
-const tabs = [
-	{
-		id: "transportation",
-		label: "Transportation",
-		icon: "/assets/img/icons/transportation.svg",
-	},
-	{ id: "schools", label: "Schools", icon: "/assets/img/icons/schools.svg" },
-	{
-		id: "hospitals",
-		label: "Hospitals",
-		icon: "/assets/img/icons/hospitals.svg",
-	},
-	{
-		id: "entertainment",
-		label: "Entertainment",
-		icon: "/assets/img/icons/entertainment.svg",
-	},
-];
 
 const Map = () => {
+	const { language } = useContext(LanguageContext);
+	const translations = language === "en" ? map_en : map_fr;
 	const [activeTab, setActiveTab] = useState("transportation");
+
+	const tabs = [
+		{
+			id: "transportation",
+			label: translations.tabs.transportation,
+			icon: "/assets/img/icons/transportation.svg",
+		},
+		{
+			id: "schools",
+			label: translations.tabs.schools,
+			icon: "/assets/img/icons/schools.svg",
+		},
+		{
+			id: "hospitals",
+			label: translations.tabs.hospitals,
+			icon: "/assets/img/icons/hospitals.svg",
+		},
+		{
+			id: "entertainment",
+			label: translations.tabs.entertainment,
+			icon: "/assets/img/icons/entertainment.svg",
+		},
+	];
 
 	const renderTab = () => {
 		switch (activeTab) {
@@ -53,12 +62,11 @@ const Map = () => {
 			className="w-full max-w-6xl mx-auto mt-8 px-4"
 		>
 			<h2 className="text-3xl font-bold uppercase text-center mb-6 text-gray-800">
-				Nearby
+				{translations.nearby}
 			</h2>
 
 			<div className="border-2 border-gray-300 rounded-lg bg-white shadow-sm">
-				{/* Tabs - shrink forever, no wrap */}
-				<div className="flex justify-center items-center  bg-gray-100 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full">
+				<div className="flex justify-center items-center bg-gray-100 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full">
 					{tabs.map(({ id, label, icon }) => {
 						const isActive = activeTab === id;
 
@@ -74,8 +82,10 @@ const Map = () => {
 									isActive ? "bg-black border-b-2 border-white" : "bg-gray-500"
 								}`}
 							>
-								{/* Text on sm+, icon only on smaller */}
-								<span className="hidden sm:block truncate">{label}</span>
+								<span
+									className="hidden sm:block text-center leading-tight"
+									dangerouslySetInnerHTML={{ __html: label }}
+								/>
 								<span className="block sm:hidden w-5 h-5">
 									<Image src={icon} alt={label} width={20} height={20} />
 								</span>
@@ -84,7 +94,6 @@ const Map = () => {
 					})}
 				</div>
 
-				{/* Tab content */}
 				<div className="p-6">{renderTab()}</div>
 			</div>
 		</motion.div>

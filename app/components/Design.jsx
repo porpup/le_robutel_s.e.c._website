@@ -44,6 +44,9 @@ const Design = () => {
 	const [fullscreenImageIndex, setFullscreenImageIndex] = useState(null);
 	const originalThemeColorRef = useRef("");
 
+	const [touchStartX, setTouchStartX] = useState(0);
+	const [touchEndX, setTouchEndX] = useState(0);
+
 	const images = activeBuilding ? contentMap[activeBuilding]?.images || [] : [];
 
 	const setThemeColor = (color) => {
@@ -79,12 +82,31 @@ const Design = () => {
 		}
 	}, [fullscreenImageIndex]);
 
+	const handleTouchStart = (e) => {
+		setTouchStartX(e.touches[0].clientX);
+	};
+
+	const handleTouchMove = (e) => {
+		setTouchEndX(e.touches[0].clientX);
+	};
+
+	const handleTouchEnd = () => {
+		const deltaX = touchStartX - touchEndX;
+		if (deltaX > 50) {
+			showNextImage(); // swipe left
+		} else if (deltaX < -50) {
+			showPreviousImage(); // swipe right
+		}
+	};
+
 	const showNextImage = () => {
 		setFullscreenImageIndex((prev) => (prev + 1) % images.length);
 	};
 
 	const showPreviousImage = () => {
-		setFullscreenImageIndex((prev) => (prev - 1 + images.length) % images.length);
+		setFullscreenImageIndex(
+			(prev) => (prev - 1 + images.length) % images.length
+		);
 	};
 
 	const closeFullScreen = () => setFullscreenImageIndex(null);
@@ -191,6 +213,9 @@ const Design = () => {
 				<div
 					className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
 					onClick={closeFullScreen}
+					onTouchStart={handleTouchStart}
+					onTouchMove={handleTouchMove}
+					onTouchEnd={handleTouchEnd}
 				>
 					{/* Previous Arrow */}
 					<button

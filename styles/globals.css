@@ -23,10 +23,7 @@
 @layer utilities {
   .neon-glow {
     text-shadow:
-      0 0 2px #000,
-      0 0 4px #222,
-      0 0 6px #444,
-      0 0 8px #666;
+      0 0 2px #000;
     -webkit-text-stroke: 0.3px transparent;
   }
 }

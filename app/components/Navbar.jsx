@@ -148,7 +148,7 @@ const Navbar = ({ initialBgColor }) => {
 						initial="initial"
 						whileHover="hover"
 						whileTap="tap"
-						className="cursor-pointer relative w-20 h-14"
+						className="cursor-pointer relative w-30 h-14"
 					>
 						<Image
 							src="/assets/img/logo.png"
@@ -281,7 +281,7 @@ const Navbar = ({ initialBgColor }) => {
 							className="cursor-pointer"
 							onClick={() => setIsMenuOpen(false)}
 						>
-							<div className="relative w-20 h-14 transition-all duration-300">
+							<div className="relative w-30 h-14 transition-all duration-300">
 								<Image
 									src="/assets/img/logo.png"
 									alt="logo"

@@ -187,12 +187,12 @@ const Navbar = ({ initialBgColor }) => {
 								href: "/about",
 								onClick: () => setIsMenuOpen(false),
 							},
-							{
-								key: language + "-contact",
-								label: translations.contacts,
-								href: "/contact",
-								onClick: () => setIsMenuOpen(false),
-							},
+							// {
+							// 	key: language + "-contact",
+							// 	label: translations.contacts,
+							// 	href: "/contact",
+							// 	onClick: () => setIsMenuOpen(false),
+							// },
 						].map((item, i) => (
 							<motion.div
 								key={item.key}
@@ -234,7 +234,7 @@ const Navbar = ({ initialBgColor }) => {
 						{/* 🔥 Language toggle with same animation as menu items */}
 						<motion.div
 							key={language + "-lang-toggle"}
-							custom={4}
+							custom={3} // Adjust to 4 when need to add Contact Us
 							initial="hidden"
 							animate="show"
 							exit="exit"
@@ -359,7 +359,7 @@ const Navbar = ({ initialBgColor }) => {
 							</div>
 						</Link>
 					</motion.div>
-					<motion.div
+					{/* <motion.div
 						variants={hoverScale}
 						initial="initial"
 						whileHover="hover"
@@ -382,7 +382,7 @@ const Navbar = ({ initialBgColor }) => {
 								</div>
 							</Link>
 						)}
-					</motion.div>
+					</motion.div> */}
 
 					{/* 🔥 Language Toggle - Now together with other menu items */}
 					<motion.button

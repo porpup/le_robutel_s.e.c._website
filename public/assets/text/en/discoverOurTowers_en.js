@@ -1,5 +1,5 @@
-const discoverOurSpaces_en = {
-	title: "Discover Our Spaces",
+const discoverOurTowers_en = {
+	title: "Discover our Towers",
 	defaultText: "Tap on a building to discover what’s inside!",
 	descriptions: {
 		building0: "This is the basement of Building 0.",
@@ -10,4 +10,4 @@ const discoverOurSpaces_en = {
 	},
 };
 
-export default discoverOurSpaces_en;
+export default discoverOurTowers_en;

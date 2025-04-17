@@ -4,7 +4,7 @@ import { LanguageProvider } from "@app/components/LanguageContext";
 import Navbar from "@app/components/Navbar";
 import Welcome from "@app/components/Welcome";
 import InTheArea from "@app/components/InTheArea";
-import DiscoverOurSpaces from "@app/components/DiscoverOurSpaces";
+import DiscoverOurTowers from "@app/components/DiscoverOurTowers";
 import Footer from "@app/components/Footer";
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
 			<Navbar />
 			<Welcome />
 			<InTheArea />
-			<DiscoverOurSpaces />
+			<DiscoverOurTowers />
 			<Footer />
 		</LanguageProvider>
 	);

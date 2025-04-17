@@ -1,5 +1,5 @@
-const discoverOurSpaces_fr = {
-	title: "Découvrez nos espaces",
+const discoverOurTowers_fr = {
+	title: "Découvrez nos tours",
 	defaultText:
 		"Touchez un bâtiment pour découvrir ce qu’il cache à l’intérieur !",
 	descriptions: {
@@ -11,4 +11,4 @@ const discoverOurSpaces_fr = {
 	},
 };
 
-export default discoverOurSpaces_fr;
+export default discoverOurTowers_fr;

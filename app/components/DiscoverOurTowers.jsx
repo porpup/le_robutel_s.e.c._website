@@ -3,8 +3,8 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { LanguageContext } from "./LanguageContext";
-import discoverOurSpaces_en from "@public/assets/text/en/discoverOurSpaces_en";
-import discoverOurSpaces_fr from "@public/assets/text/fr/discoverOurSpaces_fr";
+import discoverOurTowers_en from "@public/assets/text/en/discoverOurTowers_en";
+import discoverOurTowers_fr from "@public/assets/text/fr/discoverOurTowers_fr";
 import Image from "next/image";
 
 const imageLinks = [
@@ -37,9 +37,9 @@ const contentMap = {
 	},
 };
 
-const DiscoverOurSpaces = () => {
+const DiscoverOurTowers = () => {
 	const { language } = useContext(LanguageContext);
-	const texts = language === "fr" ? discoverOurSpaces_fr : discoverOurSpaces_en;
+	const texts = language === "fr" ? discoverOurTowers_fr : discoverOurTowers_en;
 	const [activeBuilding, setActiveBuilding] = useState(null);
 	const [fullscreenImageIndex, setFullscreenImageIndex] = useState(null);
 	const originalThemeColorRef = useRef("");
@@ -306,4 +306,4 @@ const DiscoverOurSpaces = () => {
 	);
 };
 
-export default DiscoverOurSpaces;
+export default DiscoverOurTowers;

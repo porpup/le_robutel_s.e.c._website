@@ -5,6 +5,9 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { LanguageContext } from "./LanguageContext";
 import discoverOurTowers_en from "@public/assets/text/en/discoverOurTowers_en";
 import discoverOurTowers_fr from "@public/assets/text/fr/discoverOurTowers_fr";
+import FirstTowerTab from "./FirstTowerTab";
+import SecondTowerTab from "./SecondTowerTab";
+import ThirdTowerTab from "./ThirdTowerTab";
 
 const DiscoverOurTowers = () => {
 	const { language } = useContext(LanguageContext);
@@ -17,10 +20,23 @@ const DiscoverOurTowers = () => {
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
 	const tabs = [
-		{ id: "tower1", labelKey: "tower1", descriptionKey: "building1" },
-		{ id: "tower2", labelKey: "tower2", descriptionKey: "building2" },
-		{ id: "tower3", labelKey: "tower3", descriptionKey: "building3" },
+		{ id: "tower1", labelKey: "tower1" },
+		{ id: "tower2", labelKey: "tower2" },
+		{ id: "tower3", labelKey: "tower3" },
 	];
+
+	const renderTab = () => {
+		switch (activeTab) {
+			case "tower1":
+				return <FirstTowerTab />;
+			case "tower2":
+				return <SecondTowerTab />;
+			case "tower3":
+				return <ThirdTowerTab />;
+			default:
+				return null;
+		}
+	};
 
 	useEffect(() => {
 		if (language !== displayLanguage) {
@@ -44,12 +60,6 @@ const DiscoverOurTowers = () => {
 		return { opacity: 1, y: 0 };
 	};
 
-	const renderContent = () => {
-		const active = tabs.find((tab) => tab.id === activeTab);
-		if (!active) return null;
-		return <p>{translations.descriptions[active.descriptionKey]}</p>;
-	};
-
 	return (
 		<div ref={ref}>
 			<AnimatePresence mode="wait">
@@ -60,7 +70,6 @@ const DiscoverOurTowers = () => {
 					transition={{ duration: 0.3 }}
 					className="w-full max-w-6xl mx-auto mt-8 px-4"
 				>
-					{/* Title */}
 					<motion.h2
 						className="text-3xl font-bold uppercase text-center mb-6 text-gray-800"
 						initial={{ opacity: 0, y: 20 }}
@@ -70,14 +79,12 @@ const DiscoverOurTowers = () => {
 						{translations.title}
 					</motion.h2>
 
-					{/* Main container with borders */}
 					<motion.div
 						className="border-2 border-gray-300 rounded-lg bg-white shadow-sm"
 						initial={{ opacity: 0, y: 20 }}
 						animate={getAnimationState()}
 						transition={{ duration: 0.3, delay: 0.2 }}
 					>
-						{/* Tabs */}
 						<motion.div
 							className="flex justify-center items-center bg-gray-100 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full"
 							initial={{ opacity: 0, scale: 0.95 }}
@@ -113,7 +120,6 @@ const DiscoverOurTowers = () => {
 							})}
 						</motion.div>
 
-						{/* Content */}
 						<AnimatePresence mode="wait">
 							<motion.div
 								key={`${displayLanguage}-${activeTab}`}
@@ -121,9 +127,8 @@ const DiscoverOurTowers = () => {
 								animate={getAnimationState()}
 								exit={{ opacity: 0, y: -20 }}
 								transition={{ duration: 0.3 }}
-								className="p-6"
 							>
-								{renderContent()}
+								{renderTab()}
 							</motion.div>
 						</AnimatePresence>
 					</motion.div>

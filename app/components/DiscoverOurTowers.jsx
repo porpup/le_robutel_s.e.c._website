@@ -1,305 +1,132 @@
 "use client";
 
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { LanguageContext } from "./LanguageContext";
 import discoverOurTowers_en from "@public/assets/text/en/discoverOurTowers_en";
 import discoverOurTowers_fr from "@public/assets/text/fr/discoverOurTowers_fr";
-import Image from "next/image";
-
-const imageLinks = [
-	{ id: "building0", src: "/assets/img/building0.png" },
-	{ id: "building1", src: "/assets/img/building1.png" },
-	{ id: "building2", src: "/assets/img/building2.png" },
-	{ id: "building3", src: "/assets/img/building3.png" },
-	{ id: "building4", src: "/assets/img/building4.png" },
-];
-
-const contentMap = {
-	building0: {
-		images: ["/assets/img/0_(basement).png"],
-	},
-	building1: {
-		images: ["/assets/img/1_1.png", "/assets/img/1_2.png"],
-	},
-	building2: {
-		images: ["/assets/img/2_1.png", "/assets/img/2_2.png"],
-	},
-	building3: {
-		images: ["/assets/img/3-13_1.png", "/assets/img/3-13_2.png"],
-	},
-	building4: {
-		images: [
-			"/assets/img/14_1.png",
-			"/assets/img/14_2.png",
-			"/assets/img/15_(roof).png",
-		],
-	},
-};
 
 const DiscoverOurTowers = () => {
 	const { language } = useContext(LanguageContext);
-	const texts = language === "fr" ? discoverOurTowers_fr : discoverOurTowers_en;
-	const [activeBuilding, setActiveBuilding] = useState(null);
-	const [fullscreenImageIndex, setFullscreenImageIndex] = useState(null);
-	const originalThemeColorRef = useRef("");
+	const [displayLanguage, setDisplayLanguage] = useState(language);
+	const [animationState, setAnimationState] = useState("idle");
+	const translations =
+		displayLanguage === "en" ? discoverOurTowers_en : discoverOurTowers_fr;
+	const [activeTab, setActiveTab] = useState("tower1");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-	const [touchStartX, setTouchStartX] = useState(0);
-	const [touchEndX, setTouchEndX] = useState(0);
-
-	const images = activeBuilding ? contentMap[activeBuilding]?.images || [] : [];
-
-	const setThemeColor = (color) => {
-		let metaTag = document.querySelector('meta[name="theme-color"]');
-		if (!metaTag) {
-			metaTag = document.createElement("meta");
-			metaTag.name = "theme-color";
-			document.head.appendChild(metaTag);
-		}
-		if (!originalThemeColorRef.current) {
-			originalThemeColorRef.current = metaTag.content;
-		}
-		metaTag.content = color;
-	};
+	const tabs = [
+		{ id: "tower1", labelKey: "tower1", descriptionKey: "building1" },
+		{ id: "tower2", labelKey: "tower2", descriptionKey: "building2" },
+		{ id: "tower3", labelKey: "tower3", descriptionKey: "building3" },
+	];
 
 	useEffect(() => {
-		const handleKeyDown = (e) => {
-			if (fullscreenImageIndex !== null) {
-				if (e.key === "ArrowRight") showNextImage();
-				else if (e.key === "ArrowLeft") showPreviousImage();
-				else if (e.key === "Escape") closeFullScreen();
-			}
-		};
-		window.addEventListener("keydown", handleKeyDown);
-		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [fullscreenImageIndex]);
-
-	useEffect(() => {
-		if (fullscreenImageIndex !== null) {
-			setThemeColor("#000000");
-		} else {
-			setThemeColor(originalThemeColorRef.current || "#ffffff");
+		if (language !== displayLanguage) {
+			setAnimationState("animatingOut");
+			const timer = setTimeout(() => {
+				setDisplayLanguage(language);
+				setAnimationState("animatingIn");
+				const timer2 = setTimeout(() => {
+					setAnimationState("idle");
+				}, 300);
+				return () => clearTimeout(timer2);
+			}, 300);
+			return () => clearTimeout(timer);
 		}
-	}, [fullscreenImageIndex]);
+	}, [language, displayLanguage]);
 
-	const handleTouchStart = (e) => {
-		setTouchStartX(e.touches[0].clientX);
+	const getAnimationState = () => {
+		if (!isInView) return { opacity: 0, y: 20 };
+		if (animationState === "animatingOut") return { opacity: 0, y: -20 };
+		if (animationState === "animatingIn") return { opacity: 1, y: 0 };
+		return { opacity: 1, y: 0 };
 	};
 
-	const handleTouchMove = (e) => {
-		setTouchEndX(e.touches[0].clientX);
+	const renderContent = () => {
+		const active = tabs.find((tab) => tab.id === activeTab);
+		if (!active) return null;
+		return <p>{translations.descriptions[active.descriptionKey]}</p>;
 	};
-
-	const handleTouchEnd = () => {
-		const deltaX = touchStartX - touchEndX;
-		if (deltaX > 50) {
-			showNextImage(); // swipe left
-		} else if (deltaX < -50) {
-			showPreviousImage(); // swipe right
-		}
-	};
-
-	const showNextImage = () => {
-		setFullscreenImageIndex((prev) => (prev + 1) % images.length);
-	};
-
-	const showPreviousImage = () => {
-		setFullscreenImageIndex(
-			(prev) => (prev - 1 + images.length) % images.length
-		);
-	};
-
-	const closeFullScreen = () => setFullscreenImageIndex(null);
 
 	return (
 		<div ref={ref}>
 			<AnimatePresence mode="wait">
 				<motion.div
-					key={language}
+					key={displayLanguage}
 					initial={{ opacity: 0, y: 20 }}
-					animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-					exit={{ opacity: 0, y: -20 }}
-					transition={{ duration: 0.5 }}
+					animate={getAnimationState()}
+					transition={{ duration: 0.3 }}
 					className="w-full max-w-6xl mx-auto mt-8 px-4"
 				>
+					{/* Title */}
 					<motion.h2
 						className="text-3xl font-bold uppercase text-center mb-6 text-gray-800"
 						initial={{ opacity: 0, y: 20 }}
-						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-						transition={{ duration: 0.5, delay: 0.1 }}
+						animate={getAnimationState()}
+						transition={{ duration: 0.3, delay: 0.1 }}
 					>
-						{texts.title}
+						{translations.title}
 					</motion.h2>
 
+					{/* Main container with borders */}
 					<motion.div
-						className="border-2 border-gray-300 rounded-lg bg-white shadow-sm p-6"
+						className="border-2 border-gray-300 rounded-lg bg-white shadow-sm"
 						initial={{ opacity: 0, y: 20 }}
-						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-						transition={{ duration: 0.5, delay: 0.2 }}
+						animate={getAnimationState()}
+						transition={{ duration: 0.3, delay: 0.2 }}
 					>
-						<div className="flex flex-col md:flex-row gap-6">
-							{/* Left: clickable images */}
-							<motion.div
-								className="flex flex-col gap-0 w-full md:w-1/2"
-								initial={{ opacity: 0, x: -20 }}
-								animate={
-									isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }
-								}
-								transition={{ duration: 0.5, delay: 0.3 }}
-							>
-								{[...imageLinks].reverse().map(({ id, src }) => {
-									const isActive = activeBuilding === id;
-
-									return (
-										<motion.div
-											key={id}
-											animate={{ scale: isActive ? 1.03 : 1 }}
-											whileHover={!isActive ? { scale: 1.03 } : {}}
-											whileTap={{ scale: 0.97 }}
-											transition={{ duration: 0.2 }}
-											onClick={() => setActiveBuilding(id)}
-											className={`relative w-full overflow-hidden cursor-pointer ${
-												isActive ? "z-30" : "hover:z-20"
-											}`}
-											style={{
-												WebkitBackfaceVisibility: "hidden",
-												transformStyle: "preserve-3d",
-												willChange: "transform",
-											}}
-										>
-											<div
-												className="absolute inset-0 pointer-events-none z-10 transition-colors duration-300"
-												style={{
-													backgroundColor: isActive
-														? "rgba(74, 222, 128, 0.2)"
-														: "rgba(0, 0, 0, 0)",
-												}}
-											/>
-											<img
-												src={src}
-												alt={id}
-												className="w-full h-auto object-cover relative z-0"
-												draggable={false}
-											/>
-										</motion.div>
-									);
-								})}
-							</motion.div>
-
-							{/* Right: preview area */}
-							<motion.div
-								className="w-full md:w-1/2 flex flex-col gap-4"
-								initial={{ opacity: 0, x: 20 }}
-								animate={
-									isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-								}
-								transition={{ duration: 0.5, delay: 0.3 }}
-							>
-								<AnimatePresence mode="wait">
-									<motion.div
-										key={`${language}-${activeBuilding || "default"}`}
-										initial={{ opacity: 0, y: 20 }}
-										animate={{ opacity: 1, y: 0 }}
-										exit={{ opacity: 0, y: -20 }}
-										transition={{ duration: 0.3 }}
-										className="w-full"
+						{/* Tabs */}
+						<motion.div
+							className="flex justify-center items-center bg-gray-100 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full"
+							initial={{ opacity: 0, scale: 0.95 }}
+							animate={
+								!isInView
+									? { opacity: 0, scale: 0.95 }
+									: animationState === "animatingOut"
+									? { opacity: 0, scale: 0.95 }
+									: { opacity: 1, scale: 1 }
+							}
+							transition={{ duration: 0.3, delay: 0.3 }}
+						>
+							{tabs.map(({ id, labelKey }) => {
+								const isActive = activeTab === id;
+								const label = translations.tabs[labelKey];
+								return (
+									<motion.button
+										key={`${displayLanguage}-${id}`}
+										animate={{ scale: isActive ? 1.1 : 1 }}
+										whileHover={!isActive ? { scale: 1.05 } : {}}
+										whileTap={{ scale: 0.95 }}
+										transition={{ duration: 0.2 }}
+										onClick={() => setActiveTab(id)}
+										className={`flex-1 min-w-0 h-12 px-1 mx-[8px] sm:mx-[12px] md:mx-[18px] flex items-center justify-center rounded text-white text-[3vw] sm:text-sm transition-all duration-200 ${
+											isActive
+												? "bg-black border-b-2 border-white"
+												: "bg-gray-500"
+										}`}
 									>
-										{activeBuilding ? (
-											<>
-												<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-													{images.map((imgSrc, i) => (
-														<div
-															key={i}
-															className="w-full max-h-[300px] sm:max-h-[240px] overflow-hidden rounded cursor-pointer"
-															onClick={() => setFullscreenImageIndex(i)}
-														>
-															<img
-																src={imgSrc}
-																alt={`detail ${i}`}
-																className="object-contain w-full h-full mx-auto grayscale hover:grayscale-0 hover:brightness-95 transition duration-300"
-																style={{ maxHeight: "100%", maxWidth: "100%" }}
-																draggable={false}
-															/>
-														</div>
-													))}
-												</div>
-												<p className="text-sm text-gray-600">
-													{texts.descriptions[activeBuilding]}
-												</p>
-											</>
-										) : (
-											<p className="text-black text-sm">{texts.defaultText}</p>
-										)}
-									</motion.div>
-								</AnimatePresence>
-							</motion.div>
-						</div>
-					</motion.div>
+										<span className="text-center leading-tight">{label}</span>
+									</motion.button>
+								);
+							})}
+						</motion.div>
 
-					{/* Fullscreen overlay */}
-					<AnimatePresence>
-						{fullscreenImageIndex !== null && (
+						{/* Content */}
+						<AnimatePresence mode="wait">
 							<motion.div
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								exit={{ opacity: 0 }}
+								key={`${displayLanguage}-${activeTab}`}
+								initial={{ opacity: 0, y: 20 }}
+								animate={getAnimationState()}
+								exit={{ opacity: 0, y: -20 }}
 								transition={{ duration: 0.3 }}
-								className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
-								onClick={closeFullScreen}
-								onTouchStart={handleTouchStart}
-								onTouchMove={handleTouchMove}
-								onTouchEnd={handleTouchEnd}
+								className="p-6"
 							>
-								{/* Previous Arrow */}
-								<button
-									className="absolute left-4 text-gray-300 text-4xl z-50 hover:text-gray-100 transition"
-									onClick={(e) => {
-										e.stopPropagation();
-										showPreviousImage();
-									}}
-									tabIndex="-1"
-								>
-									&#10094;
-								</button>
-
-								{/* Fullscreen Image */}
-								<motion.div
-									key={`fullscreen-${fullscreenImageIndex}`}
-									initial={{ opacity: 0, scale: 0.9 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0.9 }}
-									transition={{ duration: 0.3 }}
-								>
-									<Image
-										src={images[fullscreenImageIndex]}
-										alt="Full Screen Image"
-										width={1920}
-										height={1080}
-										style={{
-											width: "auto",
-											height: "80%",
-											maxWidth: "95%",
-											objectFit: "contain",
-										}}
-									/>
-								</motion.div>
-
-								{/* Next Arrow */}
-								<button
-									className="absolute right-4 text-gray-300 text-4xl z-50 hover:text-gray-100 transition"
-									onClick={(e) => {
-										e.stopPropagation();
-										showNextImage();
-									}}
-									tabIndex="-1"
-								>
-									&#10095;
-								</button>
+								{renderContent()}
 							</motion.div>
-						)}
-					</AnimatePresence>
+						</AnimatePresence>
+					</motion.div>
 				</motion.div>
 			</AnimatePresence>
 		</div>

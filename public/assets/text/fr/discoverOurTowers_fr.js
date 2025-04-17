@@ -1,13 +1,14 @@
 const discoverOurTowers_fr = {
 	title: "Découvrez nos tours",
-	defaultText:
-		"Touchez un bâtiment pour découvrir ce qu’il cache à l’intérieur !",
+	tabs: {
+		tower1: "1ère Tour",
+		tower2: "2ème Tour",
+		tower3: "3ème Tour",
+	},
 	descriptions: {
-		building0: "Voici le sous-sol du Bâtiment 0.",
-		building1: "Voici l’intérieur du Bâtiment 1.",
-		building2: "Différentes pièces dans le Bâtiment 2.",
-		building3: "Détails de l’aménagement du Bâtiment 3.",
-		building4: "Derniers étages et toit du Bâtiment 4.",
+		building1: "Ceci est la 1ère Tour.",
+		building2: "En développement. Bientôt disponible.",
+		building3: "En développement. Bientôt disponible.",
 	},
 };
 

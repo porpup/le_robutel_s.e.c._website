@@ -68,10 +68,10 @@ const DiscoverOurTowers = () => {
 					initial={{ opacity: 0, y: 20 }}
 					animate={getAnimationState()}
 					transition={{ duration: 0.3 }}
-					className="w-full max-w-6xl mx-auto mt-8 px-4"
+					className="w-full max-w-6xl mx-auto mt-8 mb-8 px-4"
 				>
 					<motion.h2
-						className="text-3xl font-bold uppercase text-center mb-6 text-gray-800"
+						className="text-3xl font-bold uppercase text-center mb-6 text-black"
 						initial={{ opacity: 0, y: 20 }}
 						animate={getAnimationState()}
 						transition={{ duration: 0.3, delay: 0.1 }}
@@ -80,13 +80,13 @@ const DiscoverOurTowers = () => {
 					</motion.h2>
 
 					<motion.div
-						className="border-2 border-gray-300 rounded-lg bg-white shadow-sm"
+						className="border-2 border-gray-300 rounded-lg bg-[#eff8f8] shadow-sm"
 						initial={{ opacity: 0, y: 20 }}
 						animate={getAnimationState()}
 						transition={{ duration: 0.3, delay: 0.2 }}
 					>
 						<motion.div
-							className="flex justify-center items-center bg-gray-100 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full"
+							className="flex justify-center items-center bg-gray-300 border-b border-gray-300 py-2 gap-1 flex-nowrap w-full"
 							initial={{ opacity: 0, scale: 0.95 }}
 							animate={
 								!isInView
@@ -110,7 +110,7 @@ const DiscoverOurTowers = () => {
 										onClick={() => setActiveTab(id)}
 										className={`flex-1 min-w-0 h-12 px-1 mx-[8px] sm:mx-[12px] md:mx-[18px] flex items-center justify-center rounded text-white text-[3vw] sm:text-sm transition-all duration-200 ${
 											isActive
-												? "bg-black border-b-2 border-white"
+												? "bg-black"
 												: "bg-gray-500"
 										}`}
 									>

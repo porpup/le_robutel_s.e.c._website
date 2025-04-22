@@ -23,7 +23,8 @@ const Welcome = () => {
 	return (
 		<div
 			id="home"
-			className="relative w-screen h-[35vh] md:h-[50vh] lg:h-[70vh] overflow-hidden"
+			className="relative w-full h-[35vh] md:h-[50vh] lg:h-[70vh] overflow-hidden"
+			style={{ overflowX: "hidden" }}
 		>
 			{/* Background crossfade images */}
 			{images.map((src, i) => (

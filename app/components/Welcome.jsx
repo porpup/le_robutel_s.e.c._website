@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 
 const images = [
 	"/assets/img/renders/building_day.webp",
-	"/assets/img/renders/building_up1.png",
-	"/assets/img/renders/building_up2.png",
-	"/assets/img/renders/boulevard.png",
+	"/assets/img/renders/building_up1.webp",
+	"/assets/img/renders/building_up2.webp",
+	"/assets/img/renders/building_front_2.webp",
 ];
 
 const Welcome = () => {

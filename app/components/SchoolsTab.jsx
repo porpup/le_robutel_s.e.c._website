@@ -61,7 +61,7 @@ const SchoolsTab = () => {
 					}
 				>
 					<Image
-						src="/assets/img/schools.png"
+						src="/assets/img/schools.webp"
 						alt="Schools Châteauguay"
 						fill
 						className="object-cover rounded-br-[5rem] hover:brightness-95 transition"

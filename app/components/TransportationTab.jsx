@@ -47,7 +47,9 @@ const TransportationTab = () => {
 			<div
 				ref={imageRef}
 				className={`w-full md:w-1/2 flex transition-transform duration-700 ${
-					animateImage ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+					animateImage
+						? "translate-x-0 opacity-100"
+						: "-translate-x-full opacity-0"
 				}`}
 			>
 				<div
@@ -60,7 +62,7 @@ const TransportationTab = () => {
 					}
 				>
 					<Image
-						src="/assets/img/terminus.png"
+						src="/assets/img/terminus.webp"
 						alt="Terminus Châteauguay"
 						fill
 						className="object-cover rounded-tr-[5rem] hover:brightness-95 transition"

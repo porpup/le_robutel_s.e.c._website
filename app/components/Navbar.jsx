@@ -151,7 +151,7 @@ const Navbar = ({ initialBgColor }) => {
 						className="cursor-pointer relative w-30 h-14"
 					>
 						<Image
-							src="/assets/img/logo.png"
+							src="/assets/img/logo.webp"
 							alt="logo"
 							fill
 							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -251,8 +251,8 @@ const Navbar = ({ initialBgColor }) => {
 								<Image
 									src={
 										language === "en"
-											? "/assets/img/french.png"
-											: "/assets/img/english.png"
+											? "/assets/img/french.webp"
+											: "/assets/img/english.webp"
 									}
 									alt={language === "en" ? "FR" : "EN"}
 									width={28}
@@ -283,7 +283,7 @@ const Navbar = ({ initialBgColor }) => {
 						>
 							<div className="relative w-30 h-14 transition-all duration-300">
 								<Image
-									src="/assets/img/logo.png"
+									src="/assets/img/logo.webp"
 									alt="logo"
 									fill
 									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -399,8 +399,8 @@ const Navbar = ({ initialBgColor }) => {
 						<Image
 							src={
 								language === "en"
-									? "/assets/img/french.png"
-									: "/assets/img/english.png"
+									? "/assets/img/french.webp"
+									: "/assets/img/english.webp"
 							}
 							alt={language === "en" ? "FR" : "EN"}
 							width={28}

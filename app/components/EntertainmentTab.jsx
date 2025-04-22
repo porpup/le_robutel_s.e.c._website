@@ -62,7 +62,7 @@ const EntertainmentTab = () => {
 					}
 				>
 					<Image
-						src="/assets/img/entertainment.png"
+						src="/assets/img/entertainment.webp"
 						alt="Entertainment in Châteauguay"
 						fill
 						className="object-cover rounded-br-[5rem] hover:brightness-95 transition"

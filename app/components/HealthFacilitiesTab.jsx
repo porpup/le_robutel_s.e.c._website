@@ -61,7 +61,7 @@ const HealthFacilitiesTab = () => {
 					}
 				>
 					<Image
-						src="/assets/img/hospitals.png"
+						src="/assets/img/hospitals.webp"
 						alt="Hospitals in Châteauguay"
 						fill
 						className="object-cover rounded-tr-[5rem] hover:brightness-95 transition"

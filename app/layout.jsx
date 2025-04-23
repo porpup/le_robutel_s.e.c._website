@@ -20,6 +20,11 @@ export const metadata = {
 	applicationName: "Le Robutel",
 	metadataBase: new URL("https://lerobutel.com"), // Ensure this matches your production URL
 	viewport: {
+		width: "device-width",
+		initialScale: 1,
+		maximumScale: 1,
+		minimumScale: 1,
+		userScalable: "no",
 		themeColor: "#ffffff", // Moved themeColor here
 	},
 	appleWebApp: {

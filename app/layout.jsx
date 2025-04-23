@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
 	title: "Le Robutel - Condos in Châteauguay",
-	description: "Explore modern condos in Châteauguay with Le Robutel",
+	description: "Explore modern condos in Châteauguay",
 };
 
 const siteUrl = "https://lerobutel.com";

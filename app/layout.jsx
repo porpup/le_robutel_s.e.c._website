@@ -16,21 +16,56 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-	title: "Le Robutel - Condos for Rent in Châteauguay",
-	description: "Explore modern condos for rent in Châteauguay with Le Robutel",
+	title: "Le Robutel - Condos in Châteauguay",
+	description: "Explore modern condos in Châteauguay with Le Robutel",
 };
 
 const siteUrl = "https://lerobutel.com";
-
-// Optimized SVG icon as data URL
-const svgIcon =
-	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='black'/%3E%3C/svg%3E";
 
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="scroll-smooth">
 			<head>
+				{/* ===== CRITICAL FAVICON FIXES ===== */}
+				{/* 1. ICO Fallback */}
+				<link rel="icon" href={`${siteUrl}/favicon.ico?ver=3`} sizes="any" />
+
+				{/* 2. Inline SVG Favicon (Works 100% in Safari) */}
+				<link
+					rel="icon"
+					href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23000'/></svg>"
+					type="image/svg+xml"
+				/>
+
+				{/* 3. WebP Fallback */}
+				<link
+					rel="icon"
+					href={`${siteUrl}/web-app-manifest-192x192.webp?ver=3`}
+					type="image/webp"
+					sizes="192x192"
+				/>
+
+				{/* 4. Apple Touch Icon (180x180 - Must Exist) */}
+				<link
+					rel="apple-touch-icon"
+					href={`${siteUrl}/apple-touch-icon.png?ver=3`}
+					sizes="180x180"
+				/>
+
+				{/* 5. Safari Pinned Tab */}
+				<link
+					rel="mask-icon"
+					href={`${siteUrl}/safari-pinned-tab.svg?ver=3`}
+					color="#000000"
+				/>
+
+				{/* ===== OPTIMIZATIONS ===== */}
 				{/* Preload Critical Assets */}
+				<link
+					rel="preload"
+					href={`${siteUrl}/apple-touch-icon.png`}
+					as="image"
+				/>
 				<link rel="preload" href={`${siteUrl}/og-image.webp`} as="image" />
 				<link
 					rel="preload"
@@ -38,29 +73,21 @@ export default function RootLayout({ children }) {
 					as="image"
 				/>
 
-				{/* Favicon Standards */}
-				<link rel="icon" href={`${siteUrl}/favicon.ico`} sizes="any" />
-				<link rel="icon" href={svgIcon} type="image/svg+xml" />
-				<link rel="mask-icon" href={svgIcon} color="#000000" />
-
-				{/* Apple Touch Icon - Only the 180x180 you have */}
-				<link
-					rel="apple-touch-icon"
-					sizes="180x180"
-					href={`${siteUrl}/apple-touch-icon.png`}
-				/>
-
 				{/* PWA Manifest */}
-				<link rel="manifest" href={`${siteUrl}/manifest.json`} />
+				<link rel="manifest" href={`${siteUrl}/manifest.json?ver=3`} />
 
-				{/* Microsoft Tiles */}
-				<meta name="msapplication-TileColor" content="#ffffff" />
+				{/* Windows Config */}
 				<meta
 					name="msapplication-config"
 					content={`${siteUrl}/browserconfig.xml`}
 				/>
+				<meta name="msapplication-TileColor" content="#ffffff" />
 
-				{/* OpenGraph */}
+				{/* Safari Meta Tags */}
+				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="apple-mobile-web-app-title" content="Le Robutel" />
+
+				{/* OpenGraph (Facebook, LinkedIn, etc.) */}
 				<meta property="og:title" content={metadata.title} />
 				<meta property="og:description" content={metadata.description} />
 				<meta property="og:image" content={`${siteUrl}/og-image.webp`} />
@@ -79,6 +106,7 @@ export default function RootLayout({ children }) {
 				<meta name="theme-color" content="#ffffff" />
 				<meta name="color-scheme" content="light only" />
 			</head>
+
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
 			>

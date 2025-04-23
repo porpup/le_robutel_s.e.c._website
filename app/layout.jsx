@@ -23,71 +23,84 @@ export const metadata = {
 const siteUrl = "https://lerobutel.com";
 
 export default function RootLayout({ children }) {
+	const jsonLd = {
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		name: "Le Robutel",
+		url: siteUrl,
+		logo: `${siteUrl}/web-app-manifest-512x512.webp`,
+	};
+
 	return (
 		<html lang="en" className="scroll-smooth">
 			<head>
-				{/* ===== CRITICAL FAVICON FIXES ===== */}
-				{/* 1. ICO Fallback */}
-				<link rel="icon" href={`${siteUrl}/favicon.ico?ver=3`} sizes="any" />
+				{/* ===== CORE FAVICONS ===== */}
+				{/* ICO Fallback */}
+				<link rel="icon" href="/favicon.ico" sizes="any" />
 
-				{/* 2. Inline SVG Favicon (Works 100% in Safari) */}
+				{/* Standard PNG Favicons */}
 				<link
 					rel="icon"
-					href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23000'/></svg>"
-					type="image/svg+xml"
+					type="image/png"
+					sizes="48x48"
+					href="/favicon-48x48.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="32x32"
+					href="/favicon-32x32.png"
+				/>
+				<link
+					rel="icon"
+					type="image/png"
+					sizes="16x16"
+					href="/favicon-16x16.png"
 				/>
 
-				{/* 3. WebP Fallback */}
+				{/* SVG Favicon */}
+				<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+
+				{/* Modern WebP Favicons */}
 				<link
 					rel="icon"
-					href={`${siteUrl}/web-app-manifest-192x192.webp?ver=3`}
+					href="/web-app-manifest-192x192.webp"
 					type="image/webp"
 					sizes="192x192"
 				/>
 
-				{/* 4. Apple Touch Icon (180x180 - Must Exist) */}
+				{/* ===== APPLE/SAFARI SPECIFIC ===== */}
+				{/* Apple Touch Icon */}
 				<link
 					rel="apple-touch-icon"
-					href={`${siteUrl}/apple-touch-icon.png?ver=3`}
+					href="/apple-touch-icon.png"
 					sizes="180x180"
 				/>
 
-				{/* 5. Safari Pinned Tab */}
-				<link
-					rel="mask-icon"
-					href={`${siteUrl}/safari-pinned-tab.svg?ver=3`}
-					color="#000000"
-				/>
+				{/* Safari Pinned Tab */}
+				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
 
-				{/* ===== OPTIMIZATIONS ===== */}
-				{/* Preload Critical Assets */}
-				<link
-					rel="preload"
-					href={`${siteUrl}/apple-touch-icon.png`}
-					as="image"
-				/>
-				<link rel="preload" href={`${siteUrl}/og-image.webp`} as="image" />
-				<link
-					rel="preload"
-					href={`${siteUrl}/web-app-manifest-192x192.webp`}
-					as="image"
-				/>
-
-				{/* PWA Manifest */}
-				<link rel="manifest" href={`${siteUrl}/manifest.json?ver=3`} />
-
-				{/* Windows Config */}
-				<meta
-					name="msapplication-config"
-					content={`${siteUrl}/browserconfig.xml`}
-				/>
-				<meta name="msapplication-TileColor" content="#ffffff" />
-
-				{/* Safari Meta Tags */}
+				{/* iOS Meta Tags */}
 				<meta name="apple-mobile-web-app-capable" content="yes" />
 				<meta name="apple-mobile-web-app-title" content="Le Robutel" />
+				<meta
+					name="apple-mobile-web-app-status-bar-style"
+					content="black-translucent"
+				/>
 
-				{/* OpenGraph (Facebook, LinkedIn, etc.) */}
+				{/* ===== PWA CONFIGURATION ===== */}
+				<link rel="manifest" href="/manifest.json" />
+
+				{/* ===== MICROSOFT/WINDOWS CONFIG ===== */}
+				<meta name="msapplication-config" content="/browserconfig.xml" />
+				<meta name="msapplication-TileColor" content="#ffffff" />
+				<meta name="msapplication-TileImage" content="/mstile-150x150.webp" />
+
+				{/* ===== THEME & DISPLAY ===== */}
+				<meta name="theme-color" content="#ffffff" />
+				<meta name="color-scheme" content="light only" />
+
+				{/* ===== OPENGRAPH & SOCIAL METADATA ===== */}
 				<meta property="og:title" content={metadata.title} />
 				<meta property="og:description" content={metadata.description} />
 				<meta property="og:image" content={`${siteUrl}/og-image.webp`} />
@@ -102,9 +115,11 @@ export default function RootLayout({ children }) {
 				<meta name="twitter:image" content={`${siteUrl}/twitter-image.webp`} />
 				<meta name="twitter:url" content={siteUrl} />
 
-				{/* Theme */}
-				<meta name="theme-color" content="#ffffff" />
-				<meta name="color-scheme" content="light only" />
+				{/* Structured Data */}
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+				/>
 			</head>
 
 			<body

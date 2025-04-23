@@ -18,7 +18,10 @@ export const metadata = {
 	description:
 		"Explore modern condos for rent in Châteauguay with Le Robutel. Discover our latest construction projects and find your next home.",
 	applicationName: "Le Robutel",
-	themeColor: "#ffffff",
+	metadataBase: new URL("https://lerobutel.com"), // Ensure this matches your production URL
+	viewport: {
+		themeColor: "#ffffff", // Moved themeColor here
+	},
 	appleWebApp: {
 		title: "Le Robutel",
 		capable: true,
@@ -26,7 +29,6 @@ export const metadata = {
 	},
 	icons: [
 		{ rel: "icon", href: "/favicon.ico" },
-		{ rel: "shortcut icon", href: "/favicon.ico" },
 		{
 			rel: "icon",
 			type: "image/png",
@@ -41,36 +43,8 @@ export const metadata = {
 		},
 		{ rel: "icon", type: "image/svg+xml", href: "/icon0.svg" },
 		{ rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
-		{ rel: "mask-icon", href: "/safari-pinned-tab.svg", color: "#5bbad5" },
 		{ rel: "manifest", href: "/manifest.json" },
 	],
-	openGraph: {
-		title: "Le Robutel - Condos for Rent in Châteauguay",
-		description:
-			"Explore modern condos for rent in Châteauguay with Le Robutel. Discover our latest construction projects and find your next home.",
-		url: "https://lerobutel.com",
-		siteName: "Le Robutel",
-		images: [
-			{
-				url: "/og-image.png",
-				width: 1200,
-				height: 630,
-				alt: "Le Robutel OG Image",
-			},
-		],
-		type: "website",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Le Robutel - Condos for Rent in Châteauguay",
-		description:
-			"Explore modern condos for rent in Châteauguay with Le Robutel.",
-		images: ["/twitter-image.jpg"],
-	},
-	msapplication: {
-		TileColor: "#ffffff",
-		TileImage: "/web-app-manifest-192x192.png",
-	},
 };
 
 export default function RootLayout({ children }) {

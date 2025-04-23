@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lerobutel.com
+
+# Sitemaps
+Sitemap: https://lerobutel.com/sitemap.xml

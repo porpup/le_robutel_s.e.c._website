@@ -22,17 +22,15 @@ export const metadata = {
 
 const siteUrl = "https://lerobutel.com";
 
+// Optimized SVG icon as data URL
+const svgIcon =
+	"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='black'/%3E%3C/svg%3E";
+
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="scroll-smooth">
 			<head>
 				{/* Preload Critical Assets */}
-				<link
-					rel="preload"
-					href={`${siteUrl}/icon0.svg`}
-					as="image"
-					type="image/svg+xml"
-				/>
 				<link rel="preload" href={`${siteUrl}/og-image.webp`} as="image" />
 				<link
 					rel="preload"
@@ -42,9 +40,10 @@ export default function RootLayout({ children }) {
 
 				{/* Favicon Standards */}
 				<link rel="icon" href={`${siteUrl}/favicon.ico`} sizes="any" />
-				<link rel="icon" href={`${siteUrl}/icon0.svg`} type="image/svg+xml" />
+				<link rel="icon" href={svgIcon} type="image/svg+xml" />
+				<link rel="mask-icon" href={svgIcon} color="#000000" />
 
-				{/* Apple Touch Icons */}
+				{/* Apple Touch Icon - Only the 180x180 you have */}
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
@@ -54,13 +53,6 @@ export default function RootLayout({ children }) {
 				{/* PWA Manifest */}
 				<link rel="manifest" href={`${siteUrl}/manifest.json`} />
 
-				{/* Safari Pinned Tab */}
-				<link
-					rel="mask-icon"
-					href={`${siteUrl}/safari-pinned-tab.svg`}
-					color="#000000"
-				/>
-
 				{/* Microsoft Tiles */}
 				<meta name="msapplication-TileColor" content="#ffffff" />
 				<meta
@@ -68,7 +60,7 @@ export default function RootLayout({ children }) {
 					content={`${siteUrl}/browserconfig.xml`}
 				/>
 
-				{/* OpenGraph (Facebook, LinkedIn, etc.) */}
+				{/* OpenGraph */}
 				<meta property="og:title" content={metadata.title} />
 				<meta property="og:description" content={metadata.description} />
 				<meta property="og:image" content={`${siteUrl}/og-image.webp`} />

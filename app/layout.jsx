@@ -20,49 +20,68 @@ export const metadata = {
 	description: "Explore modern condos for rent in Châteauguay with Le Robutel",
 };
 
+const siteUrl = "https://lerobutel.com";
+
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" className="scroll-smooth">
 			<head>
 				{/* Preload Critical Assets */}
-				<link rel="preload" href="/icon0.svg" as="image" type="image/svg+xml" />
-				<link rel="preload" href="/og-image.webp" as="image" />
-				<link rel="preload" href="/web-app-manifest-192x192.webp" as="image" />
+				<link
+					rel="preload"
+					href={`${siteUrl}/icon0.svg`}
+					as="image"
+					type="image/svg+xml"
+				/>
+				<link rel="preload" href={`${siteUrl}/og-image.webp`} as="image" />
+				<link
+					rel="preload"
+					href={`${siteUrl}/web-app-manifest-192x192.webp`}
+					as="image"
+				/>
 
 				{/* Favicon Standards */}
-				<link rel="icon" href="/favicon.ico" sizes="any" />
-				<link rel="icon" href="/icon0.svg" type="image/svg+xml" />
+				<link rel="icon" href={`${siteUrl}/favicon.ico`} sizes="any" />
+				<link rel="icon" href={`${siteUrl}/icon0.svg`} type="image/svg+xml" />
 
 				{/* Apple Touch Icons */}
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href="/apple-touch-icon.png"
+					href={`${siteUrl}/apple-touch-icon.png`}
 				/>
 
 				{/* PWA Manifest */}
-				<link rel="manifest" href="/manifest.json" />
+				<link rel="manifest" href={`${siteUrl}/manifest.json`} />
 
 				{/* Safari Pinned Tab */}
-				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+				<link
+					rel="mask-icon"
+					href={`${siteUrl}/safari-pinned-tab.svg`}
+					color="#000000"
+				/>
 
 				{/* Microsoft Tiles */}
 				<meta name="msapplication-TileColor" content="#ffffff" />
-				<meta name="msapplication-config" content="/browserconfig.xml" />
+				<meta
+					name="msapplication-config"
+					content={`${siteUrl}/browserconfig.xml`}
+				/>
 
-				{/* OpenGraph */}
+				{/* OpenGraph (Facebook, LinkedIn, etc.) */}
 				<meta property="og:title" content={metadata.title} />
 				<meta property="og:description" content={metadata.description} />
-				<meta property="og:image" content="/og-image.webp" />
-				<meta property="og:url" content="https://lerobutel.com" />
+				<meta property="og:image" content={`${siteUrl}/og-image.webp`} />
+				<meta property="og:url" content={siteUrl} />
 				<meta property="og:type" content="website" />
 				<meta property="og:site_name" content="Le Robutel" />
 
-				{/* Twitter */}
+				{/* Twitter Cards */}
 				<meta name="twitter:card" content="summary_large_image" />
 				<meta name="twitter:title" content={metadata.title} />
 				<meta name="twitter:description" content={metadata.description} />
-				<meta name="twitter:image" content="/twitter-image.webp" />
+				<meta name="twitter:image" content={`${siteUrl}/twitter-image.webp`} />
+				<meta name="twitter:url" content={siteUrl} />
 
 				{/* Theme */}
 				<meta name="theme-color" content="#ffffff" />

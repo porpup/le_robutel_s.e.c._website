@@ -4,10 +4,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const images = [
-	"/assets/img/renders/building_day.webp",
 	"/assets/img/renders/building_up1.webp",
-	"/assets/img/renders/building_up2.webp",
-	"/assets/img/renders/building_front_2.webp",
+	"/assets/img/renders/building_up2.webp"
 ];
 
 const Welcome = () => {

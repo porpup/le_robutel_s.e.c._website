@@ -151,7 +151,7 @@ const About = () => {
 							}`}
 						>
 							<Image
-								src="/assets/img/david_smith.jpeg"
+								src="/assets/img/david_smith.png"
 								alt={content.davidSmithTitle}
 								width={600}
 								height={800}
@@ -305,7 +305,7 @@ const About = () => {
 							}`}
 						>
 							<Image
-								src="/assets/img/philip_cortese.jpg"
+								src="/assets/img/philip_cortese.png"
 								alt={content.philipCorteseTitle}
 								width={600}
 								height={800}

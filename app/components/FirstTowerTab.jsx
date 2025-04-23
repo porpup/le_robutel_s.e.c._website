@@ -134,24 +134,26 @@ const FirstTowerTab = () => {
 							/>
 
 							{/* Arrows */}
-							<button
+							<motion.button
 								onClick={(e) => {
 									e.stopPropagation(); // Prevent this button from closing fullscreen
 									prevImage();
 								}}
 								className="absolute left-2 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/30 px-3 py-1 rounded-full"
+								whileHover={{ scale: 1.2, filter: "brightness(1.3)" }}
 							>
 								‹
-							</button>
-							<button
+							</motion.button>
+							<motion.button
 								onClick={(e) => {
 									e.stopPropagation(); // Prevent this button from closing fullscreen
 									nextImage();
 								}}
 								className="absolute right-2 top-1/2 transform -translate-y-1/2 text-white text-3xl bg-black/30 px-3 py-1 rounded-full"
+								whileHover={{ scale: 1.2, filter: "brightness(1.3)" }}
 							>
 								›
-							</button>
+							</motion.button>
 						</motion.div>
 					</motion.div>
 				)}

@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
 
 	return (
 		<div className="min-h-screen bg-white px-4 pt-[80px] pb-16 flex justify-center">
-			<div className="max-w-4xl w-full">
+			<div className="max-w-4xl w-full py-10">
 				<AnimatePresence mode="wait">
 					<motion.div
 						key={language} // This triggers animation on language change

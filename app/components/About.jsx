@@ -102,7 +102,7 @@ const About = () => {
 
 	return (
 		<div>
-			<div ref={heroRef} className="bg-[#f8f5ef]">
+			<div ref={heroRef} className="bg-[#eae7dc]">
 				<section className="max-w-6xl mx-auto px-4 py-16">
 					<div className="text-center py-14">
 						<h2
@@ -129,7 +129,7 @@ const About = () => {
 			</div>
 
 			{/* Rest of the sections */}
-			<section className="max-w-6xl mx-auto px-4 py-16">
+			<section className="max-w-6xl mx-auto px-4 py-16 bg-white">
 				{/* David Smith Section */}
 				<div ref={davidRef} className="pl-8 pr-8 mb-16">
 					<h3
@@ -328,7 +328,7 @@ const About = () => {
 				</div>
 
 				{/* Honoring Section */}
-				<div ref={honoringRef} className="bg-[#f8f5ef] p-8 mb-16">
+				<div ref={honoringRef} className="bg-[#eae7dc] p-8 mb-16">
 					<h3
 						className={`text-3xl font-semibold mb-8 text-center transition-all duration-700 ${
 							animateHonoring.title
@@ -422,7 +422,7 @@ const About = () => {
 				</div>
 
 				{/* Commitment Section */}
-				<div ref={commitmentRef} className="bg-[#f8f5ef] text-center p-8 mb-16">
+				<div ref={commitmentRef} className="bg-[#eae7dc] text-center p-8 mb-16">
 					<h3
 						className={`text-3xl font-semibold mb-8 transition-all duration-700 ${
 							animateCommitment.title

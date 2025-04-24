@@ -80,7 +80,7 @@ const DiscoverOurTowers = () => {
 					</motion.h2>
 
 					<motion.div
-						className="border-2 border-gray-300 rounded-lg bg-[#eff8f8] shadow-sm"
+						className="border-2 border-gray-300 rounded-lg bg-white shadow-sm"
 						initial={{ opacity: 0, y: 20 }}
 						animate={getAnimationState()}
 						transition={{ duration: 0.3, delay: 0.2 }}

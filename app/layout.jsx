@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
 			<head>
 				{/* ===== CORE FAVICONS ===== */}
 				{/* ICO Fallback */}
-				<link rel="icon" href="/favicon.ico" sizes="any" />
+				<link rel="shortcut icon" href="/favicon.ico" sizes="any" />
 
 				{/* Standard PNG Favicons */}
 				<link

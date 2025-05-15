@@ -10,15 +10,15 @@ import footer_fr from "@public/assets/text/fr/footer_fr";
 const Footer = () => {
 	const company = {
 		name: "Le Robutel S.E.C.",
-		street: "3227 av. des Aristocrates",
-		city: "Laval (Québec)",
-		zip: "H7E 5H7",
-		phoneNo: "+1 (450) 800-1961",
-		email: "info@condoslouisalexandre.ca",
+		street: "266 rue St-Ignace",
+		city: "La Prairie (Québec)",
+		zip: "J5R 1E5",
+		phoneNo: "+1 (450) 907-1992",
+		email: "ds@dsarchitect.net",
 	};
 
 	const googleMap =
-		"https://www.google.com/maps/place/3227+Av.+des+Aristocrates,+Laval,+QC+H7E+5H7/@45.6222665,-73.6786237,17z";
+		"https://www.google.com/maps/place/266+Rue+Saint-Ignace,+La+Prairie,+QC+J5R+1E5/@45.419101,-73.4973428,16z/data=!4m15!1m8!3m7!1s0x4cc90e57a1edbe25:0xdea96ef162a63dee!2s266+Rue+Saint-Ignace,+La+Prairie,+QC+J5R+1E5!3b1!8m2!3d45.419101!4d-73.4973428!16s%2Fg%2F11b8v54ky6!3m5!1s0x4cc90e57a1edbe25:0xdea96ef162a63dee!8m2!3d45.419101!4d-73.4973428!16s%2Fg%2F11b8v54ky6?entry=ttu&g_ep=EgoyMDI1MDUxMi4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D";
 
 	const footerRef = useRef(null);
 	const { language } = useContext(LanguageContext);

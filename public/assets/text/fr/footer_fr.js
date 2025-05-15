@@ -1,5 +1,5 @@
 const footer_fr = {
-	jobTitle: "Conseiller en crédit-bail",
+	jobTitle: "architecte",
 	privacyPolicy: "Politique de confidentialité"
 };
 

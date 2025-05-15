@@ -1,5 +1,5 @@
 const footer_en = {
-	jobTitle: "Leasing Advisor",
+	jobTitle: "Architect",
 	privacyPolicy: "Privacy Policy"
 };
 

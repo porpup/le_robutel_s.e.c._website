@@ -52,7 +52,7 @@ const Footer = () => {
 						transition={{ duration: 0.3 }}
 					>
 						<div className="mb-1">{texts.jobTitle}:</div>
-						<div className="mb-2">Daniel St-Onge</div>
+						<div className="mb-2">David Smith</div>
 					</motion.div>
 				</AnimatePresence>
 			</div>
